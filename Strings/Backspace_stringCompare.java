@@ -1,5 +1,7 @@
+package Strings;
+
 class Backspace_stringCompare{
-    public boolean backspaceCompare(String s, String t) {
+    public static boolean backspaceCompare(String s, String t) {
         int i = s.length()-1;
         int j = t.length() - 1;
         
@@ -23,7 +25,7 @@ class Backspace_stringCompare{
     return true;
     }
 
-    private int getNextValidIndex( String str, int index){
+    private static int getNextValidIndex( String str, int index){
         int backspace = 0;
 
         while (index >= 0){
@@ -38,5 +40,13 @@ class Backspace_stringCompare{
             index--;
         }
         return index;
+    }
+
+    public static void main(String args[]){
+       String s ="ab##c";
+       String t = "ab#c";
+
+       boolean ans = backspaceCompare(s, t);
+       System.out.println(ans);
     }
 }

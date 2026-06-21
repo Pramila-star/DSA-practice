@@ -10,13 +10,13 @@ public class Node{
       public Node(int value){
         this.value = value;
       }
-
+      public int getValue() {
+            return value;
+        }
+ 
     }
 
-      //public int getValue() {
-      //      return value;
-      //  }
-    
+      
       private Node root;
 
       public AVL(){
@@ -167,6 +167,10 @@ public class Node{
         }
 
       //  System.out.println(tree.height());
+        System.out.println("Tree is balanced: " + tree.balanced());
+        System.out.println("Height of tree: " + tree.height(tree.root));
+
+        tree.display();
       }
     
     }

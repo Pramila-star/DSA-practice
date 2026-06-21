@@ -95,7 +95,7 @@ private int query(Node node, int qsi, int qei){
 
 
 public void update(int index, int value){
-    this.root.value = update(this.root, index, value);
+    this.root.value = update(this.root, index, value); 
 }
 
 private int update(Node node,int index, int value){
