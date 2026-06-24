@@ -21,8 +21,8 @@ public class SubtreeOfAnotherTreeOrNot {
         if (root.data == subRoot.data && isIdentical(root,subRoot)){
             return true;
         }
-        boolean leftSubTree = isSubtree(root.left, subRoot.left);
-        boolean rightSubTree = isSubtree(root.right, subRoot.right);
+        boolean leftSubTree = isSubtree(root.left, subRoot);
+        boolean rightSubTree = isSubtree(root.right, subRoot);
 
         return leftSubTree || rightSubTree;
 
