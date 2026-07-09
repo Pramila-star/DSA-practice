@@ -1,6 +1,6 @@
 package TREE;
- BtToSumT
-public class {
+ 
+public class BtToSumT  {
       static class Node {
         int data;
         Node left;
