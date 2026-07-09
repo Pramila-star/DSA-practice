@@ -21,4 +21,4 @@ public class RotateString {
         System.out.println("Input: s = \"" + s2 + "\", goal = \"" + goal2 + "\"");
         System.out.println("Output: " + rotateString(s2, goal2));
     }
-}
+} 
