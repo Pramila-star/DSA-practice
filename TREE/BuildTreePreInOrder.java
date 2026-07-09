@@ -3,50 +3,60 @@ package TREE;
 import java.util.HashMap;
 
 public class BuildTreePreInOrder {
-    static int preIdx = 0;
-   static HashMap<Integer, Integer> map = new HashMap();
+    static class Node {
+        int data;
+        Node left;
+        Node right;
 
-   public BuildTreePreInOrder() {
-   }
+        public Node(int val){
+            this.data = val;
+            this.left = this.right = null;
+        }
+    }
+      static int preIdx = 0;
+      static HashMap<Integer, Integer> map = new HashMap<>();
 
-   public static Node helper(int[] var0, int var1, int var2) {
-      if (var1 > var2) {
-         return null;
-      } else {
-         Node var3 = new Node(var0[preIdx]);
-         ++preIdx;
-         int var4 = (Integer)map.get(var3.data);
-         var3.left = helper(var0, var1, var4 - 1);
-         var3.right = helper(var0, var4 + 1, var2);
-         return var3;
-      }
-   }
+    public static Node helper(int[] preorder, int left, int right){
+        if(left > right){
+            return null;
+        }
 
-   public static Node buildTree(int[] var0, int[] var1) {
-      for(int var2 = 0; var2 < var1.length; ++var2) {
-         map.put(var1[var2], var2);
-      }
+        Node root = new Node(preorder[preIdx]);
+        preIdx++;
 
-      return helper(var0, 0, var1.length - 1);
-   }
+        int inIdx = map.get(root.data);
 
-   public static void main(String[] var0) {
-      int[] var1 = new int[]{3, 9, 20, 15, 7};
-      int[] var2 = new int[]{9, 3, 15, 20, 7};
-      Node var3 = buildTree(var1, var2);
-      System.out.println(var3);
-   }
+        root.left = helper(preorder, left, inIdx -1);
+        root.right = helper(preorder, inIdx+1, right);
 
-   static class Node {
-      int data;
-      Node left;
-      Node right;
+        return root;
 
-      public Node(int var1) {
-         this.data = var1;
-         this.left = this.right = null;
-      }
-   }
+    } 
+
+    public static Node buildTree(int[] preorder, int[] inorder){
+        for(int i = 0; i<inorder.length; i++){
+            map.put(inorder[i], i);
+        }
+
+        return helper(preorder, 0, inorder.length - 1);
+    }
+
+    public static void main(String args[]){
+        int[] preorder = {3,9, 20, 15, 7};
+        int[] inorder = {9, 3, 15, 20, 7};
+
+        Node root = buildTree(preorder, inorder);
+        System.out.println("Preorder traversal of constructed tree:");
+        printPreorder(root);
 }
 
+    public static void printPreorder(Node root) {
+       if (root == null) {
+        return;
+    }
 
+       System.out.print(root.data + " ");
+       printPreorder(root.left);
+       printPreorder(root.right);
+}
+}
